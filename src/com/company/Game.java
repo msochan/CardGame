@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Game {
     private Player playerOne;
@@ -36,19 +37,27 @@ public class Game {
     }
 
     public void gameTurn(int p1Card, int p2Card) {
-        if (p1Card > p2Card) {
-            discardCards(p1Card, p2Card, playerOne);
-            System.out.println("Player 1 wins this round \n");
+        Scanner nextRoundPress = new Scanner(System.in);
+        System.out.println("Press ENTER");
 
-        } else if (p2Card > p1Card) {
-            discardCards(p1Card, p2Card, playerTwo);
-            System.out.println("Player 2 wins this round \n");
+        String readString = nextRoundPress.nextLine();
+        if (readString.isEmpty()) {
+            if (p1Card > p2Card) {
+                discardCards(p1Card, p2Card, playerOne);
+                System.out.println("Player 1 wins this round \n");
 
-        } else if (p1Card == p2Card) {
-            discardedCards.add(p1Card);
-            discardedCards.add(p2Card);
-            System.out.println("DRAW! No winner in this round!\n");
+            } else if (p2Card > p1Card) {
+                discardCards(p1Card, p2Card, playerTwo);
+                System.out.println("Player 2 wins this round \n");
+
+            } else if (p1Card == p2Card) {
+                discardedCards.add(p1Card);
+                discardedCards.add(p2Card);
+                System.out.println("DRAW! No winner in this round!\n");
+            }
         }
+
+
     }
 
     public int winCondition() {
